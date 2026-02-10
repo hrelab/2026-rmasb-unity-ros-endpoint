@@ -4,18 +4,6 @@ from rclpy.node import Node
 from std_msgs.msg import String
 import threading
 
-
-def _try_shutdown() -> None:
-    """Best-effort shutdown that won't raise if already shut down."""
-    try:
-        rclpy.try_shutdown()
-    except AttributeError:
-        # Older rclpy versions may not have try_shutdown
-        try:
-            rclpy.shutdown()
-        except Exception:
-            pass
-
 class UnityCommandInterface(Node):
     def __init__(self):
         super().__init__('unity_command_interface')
@@ -49,11 +37,6 @@ class UnityCommandInterface(Node):
         while rclpy.ok():
             try:
                 text = input("> ").strip()
-                if text.lower() in ["exit", "quit"]:
-                    self.get_logger().info("Exiting...")
-                    _try_shutdown()
-                    break
-
                 if not text:
                     continue
 
@@ -61,9 +44,13 @@ class UnityCommandInterface(Node):
                 msg.data = text
                 self.command_publisher.publish(msg)
                 self.get_logger().info(f"Sent: {text}")
+                if text.lower() in ["exit", "quit", "close"]:
+                    self.get_logger().info("Exiting...")
+                    rclpy.try_shutdown()
+                    break
 
             except EOFError:
-                _try_shutdown()
+                rclpy.try_shutdown()
                 break
 
 def main(args=None):
