@@ -1,0 +1,23 @@
+# Keep Docker build context small
+.git/
+.vscode/
+.idea/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# ROS 2 / colcon outputs (never bake host build artifacts into image)
+build/
+install/
+log/
+
+# Packaging
+*.egg-info/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db

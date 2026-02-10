@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# ROS 2 / colcon workspace outputs
+build/
+install/
+log/
+
+# Editor/OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Packaging
+*.egg-info/
+dist/
+
+# Docker local overrides
+.env
