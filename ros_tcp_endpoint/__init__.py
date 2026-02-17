@@ -13,3 +13,4 @@
 #  limitations under the License.
 
 from .server import TcpServer
+from .command_interface import UnityCommandInterface

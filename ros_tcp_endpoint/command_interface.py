@@ -52,18 +52,3 @@ class UnityCommandInterface(Node):
             except EOFError:
                 rclpy.try_shutdown()
                 break
-
-def main(args=None):
-    rclpy.init(args=args)
-    node = UnityCommandInterface()
-
-    try:
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        pass
-    finally:
-        node.destroy_node()
-        rclpy.try_shutdown()
-
-if __name__ == "__main__":
-    main()
