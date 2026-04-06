@@ -3,7 +3,6 @@
 import rclpy
 
 from ros_tcp_endpoint import TcpServer
-from .command_interface import UnityCommandInterface
 
 
 def main(args=None):
@@ -15,14 +14,7 @@ def main(args=None):
     tcp_server.setup_executor()
 
     tcp_server.destroy_nodes()
-    node = UnityCommandInterface()
-    try:
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        pass
-    finally:
-        node.destroy_node()
-        rclpy.try_shutdown()
+    rclpy.shutdown()
 
 
 if __name__ == "__main__":

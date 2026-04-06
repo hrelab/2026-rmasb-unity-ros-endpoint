@@ -10,8 +10,8 @@ RUN apt-get update && apt-get install -y \
     git python3-colcon-common-extensions python3-pip nano && \
     rm -rf /var/lib/apt/lists/*
 
-# Copy ROS-TCP-Endpoint from local files
-COPY . src/ros_tcp_endpoint/
+# Copy repository packages into workspace src
+COPY . /home/dev_ws/src/
 
 # Build the workspace
 RUN bash -lc "source /opt/ros/humble/setup.bash && colcon build --event-handlers console_direct+"
