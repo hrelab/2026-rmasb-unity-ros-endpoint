@@ -4,5 +4,5 @@ set -e
 source /opt/ros/humble/setup.bash
 # Source workspace
 source /home/dev_ws/install/setup.bash
-exec "$@"
-# exec "bash"
+# exec "$@"
+exec "bash"

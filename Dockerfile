@@ -18,9 +18,10 @@ RUN bash -lc "source /opt/ros/humble/setup.bash && colcon build --event-handlers
 
 # Create entrypoint script
 COPY entrypoint.sh /ros_entrypoint.sh
+COPY test_joints.py /test_joints.py
 RUN chmod +x /ros_entrypoint.sh
 
 ENTRYPOINT ["/ros_entrypoint.sh"]
 
 # Default command: run both endpoints
-CMD ["bash", "-c", "ros2 run ros_tcp_endpoint default_server_endpoint & ros2 run ros_tcp_endpoint command_interface"]
+# CMD ["bash", "-c", "ros2 run ros_tcp_endpoint default_server_endpoint & ros2 run ros_tcp_endpoint command_interface"]
